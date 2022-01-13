@@ -1,6 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+  FlatList,
+} from "react-native";
 
 export default function App() {
   const [outputText, setOutputText] = useState("");
@@ -24,13 +32,14 @@ export default function App() {
         />
         <Button title="Aggiungi" onPress={aggiungiAListaSpesa} />
       </View>
-      <View>
-        {elementiSpesa.map((el) => (
-          <View key={el}>
-            <Text>{el}</Text>
+      <FlatList
+        data={elementiSpesa}
+        renderItem={(elemento) => (
+          <View key={elemento.index} >
+            <Text>{elemento.item}</Text>
           </View>
-        ))}{" "}
-      </View>
+        )}
+      />
     </View>
   );
 }
